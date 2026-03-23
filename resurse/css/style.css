@@ -371,3 +371,34 @@ meter {
     gap: 12px;
     flex-wrap: wrap;
 }
+
+#link-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1000;
+}
+
+#link-top::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+
+    background: #c85d7d;
+    color: white;
+
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 14px;
+
+    white-space: nowrap;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+#link-top:hover::after {
+    opacity: 1;
+}
