@@ -15,6 +15,15 @@
     <meta name="keywords" content="cosmetice, skincare, ingrijirea pielii, crema hidratanta, ser facial, GlowSkin">
     <meta name="description"
         content="GlowSkin este un brand de cosmetice care oferă produse pentru îngrijirea pielii și menținerea unui ten sănătos și strălucitor.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="resurse/css/meniu.css">
+
 </head>
 
 <body>
@@ -22,19 +31,59 @@
         <h1>GlowSkin</h1>
 
         <nav class="site-nav">
-            <ul>
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="burger">
+                <i class="fa-solid fa-bars"></i>
+            </label>
+
+            <ul class="meniu">
+
                 <li>
-                    <a href="#acasa">Acasă</a>
-                    <ul>
-                        <li><a href="#despre">Despre brand</a></li>
-                        <li><a href="#produse">Produse populare</a></li>
-                        <li><a href="#evenimente">Evenimente</a></li>
-                        <li><a href="#faq">Intrebari frecvente</a></li>
+                    <a href="index.html" data-text="Acasă">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Acasă</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" data-text="Produse">
+                        <i class="fa-solid fa-pump-soap"></i>
+                        <span>Produse</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="creme.html">Creme</a></li>
+                        <li><a href="seruri.html">Seruri</a></li>
+                        <li><a href="seturi.html">Seturi</a></li>
                     </ul>
                 </li>
-                <li><a href="#tabel">Tabel produse</a></li>
-                <li><a href="#video">Video</a></li>
-                <li><a href="#contact">Contact</a></li>
+
+                <li>
+                    <a href="index.html" data-text="Prima pagină">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <span>Prima pagină</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#despre">Despre</a></li>
+                        <li><a href="#produse">Produse</a></li>
+                        <li><a href="#evenimente">Evenimente</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#video" data-text="Video">
+                        <i class="fa-solid fa-video"></i>
+                        <span>Video</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#contact" data-text="Contact">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Contact</span>
+                    </a>
+                </li>
+
             </ul>
         </nav>
 

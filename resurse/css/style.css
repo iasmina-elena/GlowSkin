@@ -1,6 +1,11 @@
 :root {
     --culoare-fundal: #fff3f7;
     --culoare-card: #ffffff;
+    --culoare-header: #fff0f5;
+    --culoare-footer: #fde6ee;
+    --culoare-zona: #ffffff;
+    --culoare-zona-alt: #fff8fb;
+
     --culoare-accent: #e88aa4;
     --culoare-accent-inchis: #c85d7d;
     --culoare-border: #f3bfd0;
@@ -12,8 +17,22 @@
     --spatiere-medie: 16px;
     --spatiere-mica: 8px;
 
+    --padding-zona: 24px;
+
+    --page-padding: 36px;
+    --page-padding-md: 20px;
+    --page-padding-sm: 10px;
+
+    --grid-gap: 24px;
+    --grid-gap-md: 16px;
+    --grid-gap-sm: 10px;
+
     --raza: 16px;
     --umbra: 0 8px 18px rgba(0, 0, 0, 0.08);
+
+    --media-width: 80%;
+    --media-max-width: 900px;
+    --media-min-width: 260px;
 }
 
 * {
@@ -28,7 +47,8 @@ html {
 
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    padding-inline: var(--page-padding);
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
     line-height: 1.5;
     font-size: 1rem;
     background: var(--culoare-fundal);
@@ -60,7 +80,7 @@ footer {
 
 .site-header,
 footer {
-    margin: var(--spatiere-mare);
+    margin: var(--spatiere-mare) 0;
     padding: var(--spatiere-mare);
 }
 
@@ -68,13 +88,14 @@ footer {
     padding: var(--spatiere-mare);
 }
 
+/*
 .site-nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.site-nav > ul {
+.site-nav>ul {
     display: flex;
     gap: 18px;
     flex-wrap: wrap;
@@ -95,11 +116,11 @@ footer {
 .site-nav a:hover {
     background: var(--culoare-highlight);
 }
-
+*/
 .grid-pagina {
     display: grid;
     gap: var(--spatiere-mare);
-    margin: var(--spatiere-mare);
+    margin: var(--spatiere-mare) 0;
 
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
@@ -109,14 +130,37 @@ footer {
         "z5 z6 z7";
 }
 
-.zona1 { grid-area: z1; }
-.zona2 { grid-area: z2; }
-.zona3 { grid-area: z3; }
-.zona4 { grid-area: z4; }
-.zona5 { grid-area: z5; }
-.zona6 { grid-area: z6; }
-.zona7 { grid-area: z7; }
-.zona8 { grid-area: z8; }
+.zona1 {
+    grid-area: z1;
+}
+
+.zona2 {
+    grid-area: z2;
+}
+
+.zona3 {
+    grid-area: z3;
+}
+
+.zona4 {
+    grid-area: z4;
+}
+
+.zona5 {
+    grid-area: z5;
+}
+
+.zona6 {
+    grid-area: z6;
+}
+
+.zona7 {
+    grid-area: z7;
+}
+
+.zona8 {
+    grid-area: z8;
+}
 
 @media (max-width: 1100px) {
     html {
@@ -132,11 +176,27 @@ footer {
             "z4 z5"
             "z6 z7";
     }
+
+    body {
+        padding-inline: var(--page-padding-md);
+    }
+
+    .grid-pagina {
+        gap: var(--grid-gap-md);
+    }
 }
 
 @media (max-width: 700px) {
     html {
         font-size: 15px;
+    }
+
+    body {
+        padding-inline: var(--page-padding-sm);
+    }
+
+    .grid-pagina {
+        gap: var(--grid-gap-sm);
     }
 
     .grid-pagina {
@@ -402,3 +462,6 @@ meter {
 #link-top:hover::after {
     opacity: 1;
 }
+
+
+

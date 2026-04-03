@@ -1,0 +1,274 @@
+/* ===== VARIABILE SASS ===== */
+$break-medium: 1100px;
+$break-small: 700px;
+
+/* ===== PLACEHOLDER (pentru @extend) ===== */
+%buton-baza {
+    display: block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* ===== VARIABILE CSS (tema) ===== */
+body {
+    --culoare-meniu-bg: #f8c8d8;
+    --culoare-meniu-hover: #e88aa4;
+    --culoare-submeniu-bg: #fff8fb;
+    --culoare-submeniu-hover: #ffd6e3;
+    --culoare-text-meniu: #4a2b35;
+    --culoare-border-meniu: #f3bfd0;
+    --inaltime-meniu: 56px;
+}
+
+/* ===== MENIU PRINCIPAL ===== */
+.site-nav {
+    position: relative;
+    z-index: 1000;
+    margin-top: 1rem;
+
+    #menu-toggle {
+        display: none;
+    }
+
+    .burger {
+        display: none;
+        font-size: 1.6rem;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 10px;
+        background: var(--culoare-meniu-bg);
+        border: 1px solid var(--culoare-border-meniu);
+    }
+
+    .meniu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+
+        >li {
+            flex: 1;
+            position: relative;
+            text-align: center;
+
+            >a {
+                @extend %buton-baza;
+                height: var(--inaltime-meniu);
+                line-height: var(--inaltime-meniu);
+                background: var(--culoare-meniu-bg);
+                border: 1px solid var(--culoare-border-meniu);
+                color: var(--culoare-text-meniu);
+                position: relative;
+                overflow: hidden;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 6px;
+
+                transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+
+                i {
+                    margin-right: 5px;
+                }
+
+                span {
+                    position: relative;
+                    z-index: 2;
+                }
+
+                /* efect text care cade */
+                /*&::after {
+          content: attr(data-text);
+          position: absolute;
+          top: -100%;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          line-height: var(--inaltime-meniu);
+          text-shadow: 0 0 6px white;
+          transition: top 0.3s ease;
+        }*/
+
+                &:hover {
+                    background: var(--culoare-meniu-hover);
+                    color: white;
+
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+                }
+
+                /*
+        &:hover::after {
+          top: 0;
+        }*/
+
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    inset: 0;
+                    background: rgba(255, 255, 255, 0.3);
+                    transform: translateY(-100%);
+                    transition: transform 0.3s ease;
+                    pointer-events: none;
+                }
+
+                &:hover::after {
+                    transform: translateY(0);
+                }
+            }
+
+            /* ===== SUBMENIU ===== */
+            .submenu {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+
+                transform: scaleY(0);
+                transform-origin: top;
+                transition: transform 0.3s ease;
+
+                li a {
+                    @extend %buton-baza;
+                    padding: 10px;
+                    background: var(--culoare-submeniu-bg);
+                    border: 1px solid var(--culoare-border-meniu);
+
+                    position: relative;
+
+                    /* linie care apare */
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        bottom: 6px;
+                        left: 10%;
+                        width: 0;
+                        height: 2px;
+                        background: var(--culoare-meniu-hover);
+                        transition: width 0.3s;
+                    }
+
+                    &:hover {
+                        background: var(--culoare-submeniu-hover);
+                    }
+
+                    &:hover::after {
+                        width: 80%;
+                    }
+                }
+            }
+
+            &:hover .submenu {
+                transform: scaleY(1);
+            }
+        }
+    }
+}
+
+/* ===== @for (cerință) ===== */
+@for $i from 1 through 5 {
+    .meniu>li:nth-child(#{$i}) {
+        animation-delay: $i * 0.05s;
+    }
+}
+
+/* ===== TABLET ===== */
+@media (max-width: $break-medium) {
+    .site-nav {
+        .meniu {
+            >li>a {
+                font-size: 0.9rem;
+
+                span {
+                    display: none;
+                    /* rămân doar iconuri */
+                }
+
+                i {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}
+
+/* ===== MOBIL ===== */
+@media (max-width: $break-small) {
+    .site-nav {
+        .burger {
+            display: block;
+        }
+
+        .meniu {
+            display: none;
+            flex-direction: column;
+
+            >li {
+                width: 100%;
+
+                >a {
+                    height: auto;
+                    line-height: normal;
+                    padding: 10px;
+
+                    /* scoatem animația mare */
+                    &::after {
+                        display: none;
+                    }
+
+                    &:hover {
+                        background: var(--culoare-meniu-hover);
+                        color: white;
+                    }
+
+                    span {
+                        display: inline;
+                        animation: aparitie 0.4s ease forwards;
+                        letter-spacing: -5px;
+                    }
+                }
+
+                .submenu {
+                    position: static;
+                    transform: scaleY(1);
+                    display: none;
+                }
+
+                &:hover .submenu {
+                    display: block;
+                }
+            }
+        }
+
+        #menu-toggle:checked+.burger+.meniu {
+            display: flex;
+        }
+
+        /* prima opțiune doar icon */
+        .meniu>li:first-child>a span {
+            display: none;
+        }
+    }
+}
+
+/* ===== ANIMAȚIE ===== */
+@keyframes aparitie {
+    0% {
+        opacity: 0;
+        letter-spacing: -6px;
+    }
+
+    100% {
+        opacity: 1;
+        letter-spacing: 0;
+    }
+}
+
+.site-nav .meniu>li .submenu {
+    background: var(--culoare-submeniu-bg);
+    z-index: 2000;
+}
