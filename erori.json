@@ -1,0 +1,31 @@
+{
+  "cale_baza": "/resurse/imagini/erori",
+  "eroare_default": {
+    "titlu": "A apărut o eroare",
+    "text": "A apărut o problemă la afișarea paginii.",
+    "imagine": "default.png"
+  },
+  "info_erori": [
+    {
+      "identificator": 400,
+      "status": true,
+      "titlu": "400 - Bad Request",
+      "text": "Cererea este greșită. Fișierele .ejs nu pot fi accesate direct.",
+      "imagine": "400.png"
+    },
+    {
+      "identificator": 403,
+      "status": true,
+      "titlu": "403 - Forbidden",
+      "text": "Nu ai voie să accesezi direct acest folder din resurse.",
+      "imagine": "403.png"
+    },
+    {
+      "identificator": 404,
+      "status": true,
+      "titlu": "404 - Page not found",
+      "text": "Pagina pe care o cauți nu există.",
+      "imagine": "404.png"
+    }
+  ]
+}

@@ -463,5 +463,56 @@ meter {
     opacity: 1;
 }
 
+.video-site {
+    display: block;
+    width: 80%;
+    min-width: 260px;
+    max-width: 900px;
+    margin: 0 auto;
+    border: 4px solid var(--culoare-border);
+    border-radius: 16px;
+    box-shadow: var(--umbra);
+    background: white;
+}
+
+a:visited {
+    color: var(--culoare-text-deschis);
+}
+
+a[href^="http"]::before {
+    content: "⮳ ";
+    font-size: 1.5em;
+}
+
+a[href^="http"]:hover::before {
+    color: var(--culoare-accent);
+}
+
+main a {
+    position: relative;
+    display: inline-block;
+    background-image: radial-gradient(
+        circle,
+        #ffe0ea 0%,
+        #ffe0ea 40%,
+        transparent 80%,
+        transparent 100%
+    );
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 0;
+    transition: background-size 0.4s ease, color 0.4s ease, border 0.2s ease;
+}
+
+main a:hover {
+    background-size: 100%;
+}
+
+main a:active {
+    border: 2px solid var(--culoare-accent);
+    border-radius: 6px;
+    padding: 2px 4px;
+}
+
 
 

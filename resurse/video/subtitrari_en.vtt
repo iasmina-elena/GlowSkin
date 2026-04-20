@@ -1,0 +1,28 @@
+WEBVTT
+
+STYLE
+::cue {
+  background: #ffe0ea;
+  color: #4a2b35;
+}
+
+::cue(.top-right) {
+  background: #ffe0ea;
+  color: #4a2b35;
+}
+
+1
+00:00:00.000 --> 00:00:04.000
+Welcome to the GlowSkin routine.
+
+2
+00:00:04.500 --> 00:00:09.000
+We apply the <u>serum</u> on clean skin.
+
+3
+00:00:09.500 --> 00:00:14.000 line:10% position:85% align:end
+<c.top-right>Radiant and hydrated skin every day.</c>
+
+4
+00:00:14.500 --> 00:00:18.000
+We finish with a gentle moisturizing cream.
