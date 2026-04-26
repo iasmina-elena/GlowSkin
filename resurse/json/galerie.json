@@ -1,0 +1,55 @@
+{
+  "cale_galerie": "/resurse/imagini/galerie",
+  "imagini": [
+    {
+      "fisier_imagine": "produs1.jpg",
+      "nume_poza": "Cremă hidratantă",
+      "continut_alternativ": "Cremă hidratantă GlowSkin",
+      "descriere_poza": "Cremă pentru hidratarea zilnică a tenului.",
+      "intervale_zile": [["luni", "duminica"]],
+      "licenta": "CC0"
+    },
+    {
+      "fisier_imagine": "produs2.jpg",
+      "nume_poza": "Ser facial",
+      "continut_alternativ": "Ser facial GlowSkin",
+      "descriere_poza": "Ser facial pentru luminozitate.",
+      "intervale_zile": [["luni", "vineri"]],
+      "licenta": "CC0"
+    },
+    {
+      "fisier_imagine": "produs3.jpg",
+      "nume_poza": "Gel de curățare",
+      "continut_alternativ": "Gel de curățare pentru ten",
+      "descriere_poza": "Gel delicat pentru curățarea pielii.",
+      "intervale_zile": [["marti", "duminica"]],
+      "licenta": "CC0"
+    },
+    {
+      "fisier_imagine": "produs4.jpg",
+      "nume_poza": "Mască facială",
+      "continut_alternativ": "Mască facială GlowSkin",
+      "descriere_poza": "Mască pentru îngrijirea tenului.",
+      "intervale_zile": [["luni", "duminica"]],
+      "licenta": "CC-BY",
+      "autor": "Autor imagine",
+      "sursa": "Link sursă imagine"
+    },
+    {
+      "fisier_imagine": "produs5.jpg",
+      "nume_poza": "Cremă SPF",
+      "continut_alternativ": "Cremă cu protecție solară",
+      "descriere_poza": "Cremă cu SPF pentru protecție zilnică.",
+      "intervale_zile": [["miercuri", "duminica"]],
+      "licenta": "CC0"
+    },
+    {
+      "fisier_imagine": "produs6.jpg",
+      "nume_poza": "Set skincare",
+      "continut_alternativ": "Set de produse skincare",
+      "descriere_poza": "Set complet pentru rutina zilnică.",
+      "intervale_zile": [["luni", "duminica"]],
+      "licenta": "CC0"
+    }
+  ]
+}

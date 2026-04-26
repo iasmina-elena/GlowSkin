@@ -1,0 +1,124 @@
+@import "../../node_modules/bootstrap/scss/functions";
+
+// schema cromatică GlowSkin
+$primary: #e88aa4;
+$secondary: #f3bfd0;
+$success: #c85d7d;
+$info: #ffe0ea;
+$light: #fff8fb;
+$dark: #4a2b35;
+
+// font implicit
+$font-family-sans-serif: "Poppins", Arial, Helvetica, sans-serif;
+
+// dimensiuni headinguri
+$h1-font-size: 2.6rem;
+$h2-font-size: 2rem;
+$h3-font-size: 1.6rem;
+$h4-font-size: 1.5rem;
+$h5-font-size: 1.25rem;
+$h6-font-size: 1rem;
+
+// border radius
+$border-radius: 1rem;
+$border-radius-sm: 0.6rem;
+$border-radius-lg: 1.3rem;
+$border-radius-xl: 1rem;
+$border-radius-xxl: 2rem;
+
+// breakpoint-uri custom
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 820px,
+  lg: 1180px,
+  xl: 1400px,
+  xxl: 1600px
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 760px,
+  lg: 1080px,
+  xl: 1280px,
+  xxl: 1450px
+);
+
+// alte variabile custom
+$body-bg: #fff3f7;
+$body-color: #4a2b35;
+$link-color: $primary;
+$link-hover-color: #c85d7d;
+$btn-border-radius: 999px;
+$enable-shadows: true;
+$box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+
+// ordinea corectă pentru bootstrap
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/variables-dark";
+@import "../../node_modules/bootstrap/scss/maps";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/root";
+@import "../../node_modules/bootstrap/scss/reboot";
+@import "../../node_modules/bootstrap/scss/type";
+@import "../../node_modules/bootstrap/scss/images";
+@import "../../node_modules/bootstrap/scss/containers";
+@import "../../node_modules/bootstrap/scss/grid";
+@import "../../node_modules/bootstrap/scss/helpers";
+@import "../../node_modules/bootstrap/scss/utilities";
+@import "../../node_modules/bootstrap/scss/buttons";
+@import "../../node_modules/bootstrap/scss/card";
+@import "../../node_modules/bootstrap/scss/alert";
+@import "../../node_modules/bootstrap/scss/badge";
+@import "../../node_modules/bootstrap/scss/forms";
+@import "../../node_modules/bootstrap/scss/bootstrap-utilities";
+
+// două teme
+:root,
+[data-bs-theme="light"] {
+  --bs-body-bg: #fff3f7;
+  --bs-body-color: #4a2b35;
+  --bs-primary: #e88aa4;
+  --bs-secondary: #f3bfd0;
+  --bs-success: #c85d7d;
+  --bs-info: #ffe0ea;
+  --bs-light: #fff8fb;
+  --bs-dark: #4a2b35;
+}
+
+[data-bs-theme="dark"] {
+  --bs-body-bg: #212529;
+  --bs-body-color: #dee2e6;
+  --bs-primary: #f1b9c8;
+  --bs-secondary: #7b5a66;
+  --bs-success: #de9eb1;
+  --bs-info: #ffdce8;
+}
+
+// mici corecții ca să nu-ți afecteze designul existent
+body {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+img,
+iframe,
+video {
+  max-width: 100%;
+}
+
+// clase demo bootstrap
+.glow-btn {
+  font-weight: 600;
+}
+
+.glow-card {
+  border-color: #f3bfd0;
+}
+
+.glow-alert {
+  border-radius: 1rem;
+}
