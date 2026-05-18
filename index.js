@@ -3,6 +3,7 @@ const path = require("path");
 const fs = require("fs");
 const sharp = require("sharp");
 const sass = require("sass");
+const pg = require("pg");
 
 const app = express();
 const PORT = 8080;
@@ -15,6 +16,106 @@ console.log("__dirname === process.cwd() ?", __dirname === process.cwd());
 global.folderScss = path.join(__dirname, "resurse/scss");
 global.folderCss = path.join(__dirname, "resurse/css");
 global.folderBackup = path.join(__dirname, "backup");
+
+client = new pg.Client({
+    database: "proiect",
+    user: "postgres",
+    password: "postgres123",
+    host: "localhost",
+    port: 5432
+});
+
+client.connect();
+
+client.query("SELECT * FROM produse", function(err, rez){
+    if(err){
+        console.log("Eroare", err);
+    }
+    else{
+        console.log(rez.rows);
+    }
+});
+
+app.use(async function(req, res, next){
+    try{
+        const rezultatCategorii = await client.query(`
+            SELECT unnest(enum_range(NULL::categ_produs)) AS categorie
+        `);
+
+        res.locals.categorii = rezultatCategorii.rows.map(row => row.categorie);
+        res.locals.ip = req.ip;
+
+        next();
+    }
+    catch(err){
+        console.log("Eroare la citirea categoriilor:", err);
+        res.locals.categorii = [];
+        res.locals.ip = req.ip;
+        next();
+    }
+});
+
+app.get("/produse", async function(req, res) {
+    try {
+        let conditie = "";
+        let valori = [];
+
+        if (req.query.categorie) {
+            conditie = "WHERE categorie = $1";
+            valori = [req.query.categorie];
+        }
+
+        const rezultatProduse = await client.query(
+            `SELECT * FROM produse ${conditie} ORDER BY id`,
+            valori
+        );
+
+        const rezultatCategorii = await client.query(`
+            SELECT unnest(enum_range(NULL::categ_produs)) AS categorie
+        `);
+
+        res.render("pagini/produse", {
+            titluPagina: "Produse",
+            produse: rezultatProduse.rows,
+            categorii: rezultatCategorii.rows.map(row => row.categorie),
+            ip: req.ip
+        });
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Eroare la încărcarea produselor.");
+    }
+});
+
+app.get("/produs/:id", async function(req, res){
+
+    try{
+
+        const rezultat = await client.query(
+            "SELECT * FROM produse WHERE id=$1",
+            [req.params.id]
+        );
+
+        if(rezultat.rows.length==0){
+            res.status(404).send("Produs inexistent");
+            return;
+        }
+
+        res.render("pagini/produs",{
+            titluPagina: rezultat.rows[0].nume,
+            prod: rezultat.rows[0],
+            ip:req.ip
+        });
+
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).send("Eroare server");
+    }
+
+});
+
+
 
 ["temp", "fisiere_uploadate", "backup"].forEach(folder => {
     const caleFolder = path.join(__dirname, folder);
@@ -257,3 +358,4 @@ app.get(/.*/, (req, res) => {
 app.listen(PORT, () => {
     console.log(`Serverul a pornit: http://localhost:${PORT}`);
 });
+

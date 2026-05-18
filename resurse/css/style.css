@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 :root {
   --culoare-fundal: #fff3f7;
   --culoare-card: #ffffff;
@@ -155,36 +156,45 @@ footer {
   html {
     font-size: 17px;
   }
+
   .grid-pagina {
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "z1 z1" "z8 z8" "z2 z3" "z4 z5" "z6 z7";
   }
+
   body {
     padding-inline: var(--page-padding-md);
   }
+
   .grid-pagina {
     gap: var(--grid-gap-md);
   }
 }
+
 @media (max-width: 700px) {
   html {
     font-size: 15px;
   }
+
   body {
     padding-inline: var(--page-padding-sm);
   }
+
   .grid-pagina {
     gap: var(--grid-gap-sm);
   }
+
   .grid-pagina {
     grid-template-columns: 1fr;
     grid-template-areas: "z1" "z8" "z2" "z3" "z4" "z5" "z6" "z7";
   }
+
   * {
     animation: none !important;
     transition: none !important;
   }
 }
+
 .taburi-iframe {
   display: flex;
   gap: 10px;
@@ -565,11 +575,13 @@ main a:active {
     column-count: 1;
   }
 }
+
 @media (max-width: 700px) {
   .text-coloane {
     column-count: 1;
   }
 }
+
 ::selection {
   background: var(--culoare-accent);
   color: white;
@@ -598,10 +610,12 @@ main a:active {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-100%);
   }
 }
+
 .sectiune-parallax {
   min-height: 320px;
   display: flex;
@@ -616,16 +630,23 @@ main a:active {
 }
 
 @keyframes fundal-schimbator {
-  0%, 33% {
+
+  0%,
+  33% {
     background-image: url("/resurse/imagini/produs_mare.jpg");
   }
-  34%, 66% {
+
+  34%,
+  66% {
     background-image: url("/resurse/imagini/produs_mediu.jpg");
   }
-  67%, 100% {
+
+  67%,
+  100% {
     background-image: url("/resurse/imagini/produs_mic.jpg");
   }
 }
+
 .hero-video {
   position: relative;
   min-height: 60vh;
@@ -723,18 +744,22 @@ main a:active {
   .grid-galerie {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .grid-galerie figure:nth-child(n) {
     grid-column: auto;
   }
 }
+
 @media (max-width: 700px) {
   .grid-galerie {
     grid-template-columns: 1fr;
   }
+
   .grid-galerie img {
     height: 220px;
   }
 }
+
 /* ===== EFECT CSS: text pe coloane ===== */
 .text-coloane {
   column-count: 2;
@@ -748,6 +773,7 @@ main a:active {
     column-rule: none;
   }
 }
+
 /* ===== EFECT CSS: selection ===== */
 ::selection {
   background: var(--culoare-accent);
@@ -776,10 +802,12 @@ main a:active {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-100%);
   }
 }
+
 /* ===== efect-css-stilizare-hr ===== */
 .hr-stilizat {
   border: none;
@@ -819,4 +847,32 @@ main a:active {
   transform: translateY(16px) scaleY(-1.6);
   opacity: 0.5;
   filter: blur(4px);
+}
+
+body.tema-dark {
+  background-color: #1f171b !important;
+  color: #f7dce7 !important;
+}
+
+body.tema-dark main,
+body.tema-dark .zona,
+body.tema-dark .produs,
+body.tema-dark #filtre,
+body.tema-dark header,
+body.tema-dark footer {
+  background-color: #2b2026 !important;
+  color: #f7dce7 !important;
+  border-color: #70465a !important;
+}
+
+body.tema-dark a {
+  color: #ffbfd0 !important;
+}
+
+body.tema-dark input,
+body.tema-dark textarea,
+body.tema-dark select {
+  background-color: #3a2a33 !important;
+  color: #f7dce7 !important;
+  border-color: #70465a !important;
 }

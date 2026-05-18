@@ -22,9 +22,17 @@
                     <span>Produse</span>
                 </a>
                 <ul class="submenu">
-                    <li><a href="/creme">Creme</a></li>
-                    <li><a href="/seruri">Seruri</a></li>
-                    <li><a href="/seturi">Seturi</a></li>
+                    <li>
+                        <a href="/produse">Toate</a>
+                    </li>
+
+                    <% for(let categ of categorii){ %>
+                        <li>
+                            <a href="/produse?categorie=<%= categ %>">
+                                <%= categ.replaceAll("_", " " ) %>
+                            </a>
+                        </li>
+                        <% } %>
                 </ul>
             </li>
 
@@ -68,6 +76,13 @@
                 </a>
             </li>
         </ul>
+
+        <div class="form-check form-switch mt-3">
+            <input class="form-check-input" type="checkbox" id="switch-tema">
+            <label class="form-check-label" for="switch-tema">
+                <i id="icon-tema" class="fa-solid fa-sun"></i>
+            </label>
+        </div>
     </nav>
 
     <p>GlowSkin este un brand de cosmetice care se concentrează pe produse de îngrijire a pielii, oferind o gamă

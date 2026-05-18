@@ -1,3 +1,10 @@
+$form-range-thumb-width: 1.5rem;
+$form-range-thumb-height: 1.5rem;
+$form-range-thumb-bg: #e88aa4;
+
+$form-range-track-bg: #f3bfd0;
+$form-range-track-height: 0.6rem;
+
 @import "../../node_modules/bootstrap/scss/functions";
 
 // schema cromatică GlowSkin
@@ -52,6 +59,7 @@ $link-hover-color: #c85d7d;
 $btn-border-radius: 999px;
 $enable-shadows: true;
 $box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+
 
 // ordinea corectă pentru bootstrap
 @import "../../node_modules/bootstrap/scss/variables";

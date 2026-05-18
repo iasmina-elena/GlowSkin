@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <%- include("../fragmente/head.ejs") %>
+</head>
+
+<body>
+
+    <%- include("../fragmente/header.ejs") %>
+
+        <main>
+
+            <h1>Produse GlowSkin</h1>
+            <section id="filtre" class="container my-4 p-4 rounded shadow-sm bg-light">
+
+                <h2 class="mb-4">Filtrare produse</h2>
+
+                <div class="row g-3 align-items-end">
+
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Nume produs" id="inp-nume"
+                                style="height: 90px"></textarea>
+                            <label for="inp-nume">Nume produs</label>
+                        </div>
+                        <div class="invalid-feedback">
+                            Numele poate conține doar litere, spații și cratimă.
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <label for="inp-descriere" class="form-label">Cuvânt în descriere</label>
+                        <input type="text" id="inp-descriere" class="form-control">
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <label for="inp-tip-ten" class="form-label">Tip ten</label>
+                        <input type="text" id="inp-tip-ten" list="lista-tip-ten" class="form-control">
+
+                        <datalist id="lista-tip-ten">
+                            <option value="normal"></option>
+                            <option value="uscat"></option>
+                            <option value="gras"></option>
+                            <option value="mixt"></option>
+                            <option value="sensibil"></option>
+                            <option value="matur"></option>
+                            <option value="toate tipurile"></option>
+                        </datalist>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <label for="inp-pret" class="form-label">
+                            Preț minim: <span id="infoPret">0</span>
+                        </label>
+
+                        <div class="d-flex align-items-center gap-2">
+                            <span>0</span>
+                            <input type="range" id="inp-pret" class="form-range" min="0" max="200" value="0">
+                            <span>200</span>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <label class="form-label d-block">Tip produs</label>
+
+                        <div class="btn-group" role="group">
+                            <input type="radio" class="btn-check" name="grVegan" id="veg-toate" value="toate" checked>
+                            <label class="btn btn-outline-primary" for="veg-toate">Toate</label>
+
+                            <input type="radio" class="btn-check" name="grVegan" id="veg-da" value="vegan">
+                            <label class="btn btn-outline-primary" for="veg-da">Vegan</label>
+
+                            <input type="radio" class="btn-check" name="grVegan" id="veg-nu" value="nonvegan">
+                            <label class="btn btn-outline-primary" for="veg-nu">Non-vegan</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="form-check form-switch mt-4">
+                            <input class="form-check-input" type="checkbox" id="inp-noutati">
+                            <label class="form-check-label" for="inp-noutati">Noutăți</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <label for="inp-categorie" class="form-label">Categorie</label>
+                        <select id="inp-categorie" class="form-select">
+                            <option value="toate">Toate</option>
+
+                            <% for(let categ of categorii){ %>
+                                <option value="<%= categ %>">
+                                    <%= categ.replaceAll("_"," ") %>
+                    </option>
+                <% } %>
+            </select>
+        </div>
+
+        <div class=" col-12 col-md-6 col-lg-4">
+                                        <label for="inp-ingrediente" class="form-label">Ingrediente</label>
+                                        <select id="inp-ingrediente" class="form-select" multiple>
+                                            <option value="acid hialuronic">acid hialuronic</option>
+                                            <option value="niacinamidă">niacinamidă</option>
+                                            <option value="aloe vera">aloe vera</option>
+                                            <option value="vitamina E">vitamina E</option>
+                                            <option value="ceramide">ceramide</option>
+                                            <option value="pantenol">pantenol</option>
+                                            <option value="zinc">zinc</option>
+                                            <option value="retinol">retinol</option>
+                                            <option value="peptide">peptide</option>
+                                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="d-flex flex-wrap gap-2 mt-3">
+
+                            <button id="btn-filtrare" class="btn btn-primary btn-lg">
+                                <i class="bi bi-funnel"></i>
+                                <span class="text-btn">Filtrează</span>
+                            </button>
+
+                            <button id="sortCresc" class="btn btn-secondary btn-lg">
+                                <i class="bi bi-sort-alpha-down"></i>
+                                <span class="text-btn">Sortare crescătoare</span>
+                            </button>
+
+                            <button id="sortDescresc" class="btn btn-secondary btn-lg">
+                                <i class="bi bi-sort-alpha-up"></i>
+                                <span class="text-btn">Sortare descrescătoare</span>
+                            </button>
+
+                            <button id="resetare" class="btn btn-outline-danger btn-lg">
+                                <i class="bi bi-arrow-clockwise"></i>
+                                <span class="text-btn">Resetează</span>
+                            </button>
+
+                            <button id="calculare" class="btn btn-success btn-lg">
+                                <i class="bi bi-calculator"></i>
+                                <span class="text-btn">Calculează</span>
+                            </button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <section class="grid-produse">
+
+                <% for(let prod of produse) { %>
+
+                    <article class="produs <%= prod.categorie %>" id="artc-<%= prod.id %>"
+                        data-nume="<%= prod.nume.toLowerCase() %>" data-descriere="<%= prod.descriere.toLowerCase() %>"
+                        data-pret="<%= prod.pret %>" data-categorie="<%= prod.categorie %>"
+                        data-vegan="<%= prod.vegan %>"
+                        data-data="<%= new Date(prod.data_adaugare).toISOString().split('T')[0] %>"
+                        data-index="<%= prod.id %>" data-tip-ten="<%= prod.tip_ten.toLowerCase() %>"
+                        data-ingrediente="<%= prod.ingrediente.toLowerCase() %>">
+
+                        <h2>
+                            <a href="/produs/<%= prod.id %>">
+                                <%= prod.nume %>
+                            </a>
+                        </h2>
+
+                        <div class="container-produs">
+
+                            <div class="coloana-stanga">
+
+                                <img src="<%= prod.imagine %>" alt="<%= prod.nume %>">
+
+                                <ul>
+                                    <li><b>Preț:</b> <span class="pret">
+                                            <%= prod.pret %>
+                                        </span> lei</li>
+                                    <li><b>Volum:</b> <span class="volum">
+                                            <%= prod.volum_ml %>
+                                        </span> ml</li>
+                                    <li><b>Tip ten:</b> <span>
+                                            <%= prod.tip_ten %>
+                                        </span></li>
+                                    <li><b>Ingrediente:</b> <span>
+                                            <%= prod.ingrediente %>
+                                        </span></li>
+                                    <li><b>Vegan:</b> <span>
+                                            <%= prod.vegan ? "Da" : "Nu" %>
+                                        </span></li>
+
+                                    <li>
+                                        <b>Data adăugării:</b>
+                                        <time
+                                            datetime="<%= new Date(prod.data_adaugare).toISOString().split('T')[0] %>">
+                                            <%= new Date(prod.data_adaugare).toLocaleDateString("ro-RO", {
+                                                weekday: "long" , year: "numeric" , month: "long" , day: "numeric" }) %>
+                                        </time>
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                            <div class="coloana-dreapta">
+
+                                <p class="categorie">
+                                    <%= prod.categorie %>
+                                </p>
+
+                                <p class="descriere">
+                                    <%= prod.descriere %>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <% } %>
+
+            </section>
+        </main>
+
+        <%- include("../fragmente/footer.ejs") %>
+
+            <script src="/resurse/js/produse.js"></script>
+
+</body>
+
+</html>
