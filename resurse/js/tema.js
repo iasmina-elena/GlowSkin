@@ -1,41 +1,26 @@
 window.addEventListener("load", function () {
+    const selectTema = document.getElementById("select-tema");
+    const teme = ["light", "dark", "lavanda", "mint"];
 
-    console.log("tema.js incarcat");
+    function aplicaTema(tema) {
+        if (!teme.includes(tema)) tema = "light";
 
-    let switchTema = document.getElementById("switch-tema");
-    let iconTema = document.getElementById("icon-tema");
+        document.body.classList.remove("tema-dark", "tema-lavanda", "tema-mint");
 
-    if (!switchTema) {
-        console.log("Nu exista switch-tema");
-        return;
-    }
+        if (tema !== "light") {
+            document.body.classList.add("tema-" + tema);
+        }
 
-    let temaSalvata = localStorage.getItem("tema");
+        localStorage.setItem("tema", tema);
 
-    if (temaSalvata === "dark") {
-        document.body.classList.add("tema-dark");
-        switchTema.checked = true;
-
-        if (iconTema) {
-            iconTema.classList.remove("fa-sun");
-            iconTema.classList.add("fa-moon");
+        if (selectTema) {
+            selectTema.value = tema;
         }
     }
 
-    switchTema.addEventListener("change", function () {
+    aplicaTema(localStorage.getItem("tema") || "light");
 
-        document.body.classList.toggle("tema-dark", this.checked);
-
-        localStorage.setItem(
-            "tema",
-            this.checked ? "dark" : "light"
-        );
-
-        if (iconTema) {
-            iconTema.classList.toggle("fa-sun", !this.checked);
-            iconTema.classList.toggle("fa-moon", this.checked);
-        }
-
+    selectTema?.addEventListener("change", function () {
+        aplicaTema(this.value);
     });
-
 });

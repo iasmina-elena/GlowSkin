@@ -12,6 +12,15 @@
         <main>
 
             <h1>Produse GlowSkin</h1>
+            <p class="text-center my-3">
+                Produse afișate:
+                <strong id="nr-produse-afisate">
+                    <%= produse.length %>
+                </strong>
+            </p>
+
+            <div id="paginare-produse" class="text-center my-3"></div>
+
             <section id="filtre" class="container my-4 p-4 rounded shadow-sm bg-light">
 
                 <h2 class="mb-4">Filtrare produse</h2>
@@ -55,9 +64,16 @@
                         </label>
 
                         <div class="d-flex align-items-center gap-2">
-                            <span>0</span>
-                            <input type="range" id="inp-pret" class="form-range" min="0" max="200" value="0">
-                            <span>200</span>
+                            <span>
+                                <%= produse.reduce((a,p)=>Math.min(a,p.pret), produse[0].pret) %>
+                            </span>
+                            <input type="range" id="inp-pret" class="form-range"
+                                min="<%= produse.reduce((a,p)=>Math.min(a,p.pret), produse[0].pret) %>"
+                                max="<%= produse.reduce((a,p)=>Math.max(a,p.pret), produse[0].pret) %>"
+                                value="<%= produse.reduce((a,p)=>Math.min(a,p.pret), produse[0].pret) %>">
+                            <span>
+                                <%= produse.reduce((a,p)=>Math.max(a,p.pret), produse[0].pret) %>
+                            </span>
                         </div>
                     </div>
 
@@ -139,11 +155,44 @@
                                 <span class="text-btn">Calculează</span>
                             </button>
 
+                            <div class="row g-2 my-3">
+                                <div class="col-md-3">
+                                    <label for="sort-cheie1" class="form-label">
+                                        Prima cheie
+                                    </label>
+
+                                    <select id="sort-cheie1" class="form-select">
+                                        <option value="nume">Nume</option>
+                                        <option value="pret">Preț</option>
+                                        <option value="categorie">Categorie</option>
+                                        <option value="volum">Volum</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="sort-cheie2" class="form-label">
+                                        A doua cheie
+                                    </label>
+
+                                    <select id="sort-cheie2" class="form-select">
+                                        <option value="pret">Preț</option>
+                                        <option value="nume">Nume</option>
+                                        <option value="categorie">Categorie</option>
+                                        <option value="volum">Volum</option>
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
                 </div>
             </section>
+
+            <p id="mesaj-fara-produse" class="alert alert-warning text-center" hidden>
+                Nu există produse conform filtrării curente.
+            </p>
+
             <section class="grid-produse">
 
                 <% for(let prod of produse) { %>
@@ -154,13 +203,34 @@
                         data-vegan="<%= prod.vegan %>"
                         data-data="<%= new Date(prod.data_adaugare).toISOString().split('T')[0] %>"
                         data-index="<%= prod.id %>" data-tip-ten="<%= prod.tip_ten.toLowerCase() %>"
-                        data-ingrediente="<%= prod.ingrediente.toLowerCase() %>">
+                        data-ingrediente="<%= prod.ingrediente.toLowerCase() %>" data-imagine="<%= prod.imagine %>">
 
                         <h2>
                             <a href="/produs/<%= prod.id %>">
                                 <%= prod.nume %>
                             </a>
                         </h2>
+
+                        <p class="badge-cel-mai-ieftin"></p>
+
+                        <div class="actiuni-produs my-2">
+
+                            <button class="btn btn-sm btn-outline-success btn-pastreaza"
+                                title="Păstrează produsul la filtrare">
+                                <i class="fa-solid fa-thumbtack"></i>
+                            </button>
+
+                            <button class="btn btn-sm btn-outline-warning btn-ascunde"
+                                title="Ascunde temporar produsul">
+                                <i class="fa-solid fa-eye-slash"></i>
+                            </button>
+
+                            <button class="btn btn-sm btn-outline-danger btn-sterge-sesiune"
+                                title="Șterge produsul pentru sesiunea curentă">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+
+                        </div>
 
                         <div class="container-produs">
 
@@ -217,6 +287,18 @@
 
             </section>
         </main>
+
+        <div id="modal-produs" class="modal-produs">
+            <div class="continut-modal">
+
+                <button id="inchide-modal" class="btn btn-danger">
+                    ✖
+                </button>
+
+                <div id="continut-modal-produs"></div>
+
+            </div>
+        </div>
 
         <%- include("../fragmente/footer.ejs") %>
 

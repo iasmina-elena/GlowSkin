@@ -877,12 +877,24 @@ body.tema-dark select {
   border-color: #70465a !important;
 }
 
-@media (max-width: 700px) {
-  .text-btn {
-    display: none;
-  }
+body.tema-lavanda {
+  --culoare-fundal: #f4efff;
+  --culoare-accent: #9b7bd8;
+  --culoare-accent-inchis: #6f4cb5;
+  --culoare-border: #d9c8ff;
+  --culoare-text: #35254f;
+}
 
-  #filtre .btn {
-    padding: 0.65rem 0.9rem;
-  }
+body.tema-mint {
+  --culoare-fundal: #effff8;
+  --culoare-accent: #4fbf9f;
+  --culoare-accent-inchis: #267a63;
+  --culoare-border: #b9eadb;
+  --culoare-text: #21463b;
+}
+
+body.tema-lavanda,
+body.tema-mint {
+  background: var(--culoare-fundal);
+  color: var(--culoare-text);
 }
